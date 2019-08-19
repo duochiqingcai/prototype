@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--1.基本信息-->
+    <modelVersion>4.0.0</modelVersion>
+    <name>prototype</name>
+    <description>dcqc's prototype project~</description>
+    <!--打包方式（packaging）必须设为 pom，因为根目录的 Maven 项目是负责将各个子模块进行打包，本身并没有实际代码-->
+    <packaging>pom</packaging>
+
+    <!-- 2.继承说明：这里继承SpringBoot提供的父工程 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <!--3.模块说明：声明多个子模块-->
+    <modules>
+        <module>prototype-biz</module>
+        <module>prototype-dao</module>
+        <module>prototype-entity</module>
+        <module>prototype-service</module>
+        <module>prototype-web</module>
+        <module>prototype-util</module>
+    </modules>
+    <!--4.项目说明：作为聚合工程的父工程-->
+    <groupId>com.dcqc</groupId>
+    <artifactId>prototype</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!--5.属性说明-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <!--在properties中统一控制依赖包的版本-->
+        <prototype.version>0.0.1-SNAPSHOT</prototype.version>
+    </properties>
+
+    <!--依赖说明：统一管理依赖的版本号;dependencies 即使在子项目中不写该依赖项，那么子项目仍然会从父项目中继承该依赖项（全部继承）
+        dependencyManagement 里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖。-->
+    <dependencyManagement>
+        <dependencies>
+            <!--声明子模块依赖-->
+            <dependency>
+                <groupId>com.dcqc</groupId>
+                <artifactId>prototype-biz</artifactId>
+                <version>${prototype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dcqc</groupId>
+                <artifactId>prototype-dao</artifactId>
+                <version>${prototype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dcqc</groupId>
+                <artifactId>prototype-service</artifactId>
+                <version>${prototype.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dcqc</groupId>
+                <artifactId>prototype-web</artifactId>
+                <version>${prototype.version}</version>
+            </dependency>
+
+            <!--声明公共依赖-->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.1.0</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

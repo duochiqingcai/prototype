@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--应用层业务逻辑层-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!--子模块继承的父工程-->
+    <parent>
+        <groupId>com.dcqc</groupId>
+        <artifactId>prototype</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!--子模块基本信息；子模块默认的打包方式是jar-->
+    <artifactId>prototype-biz</artifactId>
+    <name>prototype-biz</name>
+
+    <dependencies>
+        <!--引入父工程中声明的依赖-->
+        <dependency>
+            <groupId>com.dcqc</groupId>
+            <artifactId>prototype-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dcqc</groupId>
+            <artifactId>prototype-service</artifactId>
+        </dependency>
+
+        <!--声明公共依赖-->
+    </dependencies>
+
+</project>
